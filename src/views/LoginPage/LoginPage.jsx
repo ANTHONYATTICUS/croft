@@ -32,7 +32,7 @@ class LoginPage extends React.Component {
     this.state = {
       username: '',
       password: '',
-      redirectTo: null
+      redirectTo: '/profile-page'
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChangeUsername = this.handleChangeUsername.bind(this)
@@ -51,19 +51,26 @@ class LoginPage extends React.Component {
     })
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    axios.post('localhost:8080/auth/login', {
-      username: this.state.username,
-      password: this.state.password
-    },{ headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
-    }
-    }).then(function (response) {
-      console.log(response);
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const {username, password} = this.state;
+    axios.post("http://localhost:8080/auth/login", {
+      username: username,
+      password: password
     })
+      .then(function (response) {
+        if (response.data.redirect == '/') {
+          console.log(response)
+          window.location = "/profile-page"
+      } else if (response.data.redirect == '/login'){
+          window.location = "/login"
+      }
+    })
+      .catch(function(error) {
+        window.location = "/login"
+   
+      })
+      
   }
 
   componentDidMount() {

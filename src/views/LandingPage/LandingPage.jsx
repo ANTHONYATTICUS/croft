@@ -54,8 +54,8 @@ class LandingPage extends React.Component {
                 large-scale rural agriculture.
                 </h4>
                 <br />
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/97dFMx2R_RU?start=12" frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/97dFMx2R_RU?start=12" frameBorder="0" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>    
 
               </GridItem>
             </GridContainer>

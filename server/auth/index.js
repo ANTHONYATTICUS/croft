@@ -3,14 +3,14 @@ const router = express.Router()
 const User = require('../db/models/user')
 const passport = require('../passport')
 
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
-router.get(
-	'/google/callback',
-	passport.authenticate('google', {
-		successRedirect: '/',
-		failureRedirect: '/login'
-	})
-)
+// router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
+// router.get(
+// 	'/google/callback',
+// 	passport.authenticate('google', {
+// 		successRedirect: '/',
+// 		failureRedirect: '/login'
+// 	})
+// )
 
 // this route is just used to get the user basic info
 router.get('/user', (req, res, next) => {
@@ -23,25 +23,33 @@ router.get('/user', (req, res, next) => {
 	}
 })
 
-router.post(
-	'/login',
-	function(req, res, next) {
-		console.log(req.body)
-		console.log('================')
-		next()
-	},
-	passport.authenticate('local'),
-	(req, res) => {
-		console.log('POST to /login')
-		const user = JSON.parse(JSON.stringify(req.user)) // hack
-		const cleanUser = Object.assign({}, user)
-		if (cleanUser.local) {
-			console.log(`Deleting ${cleanUser.local.password}`)
-			delete cleanUser.local.password
-		}
-		res.json({ user: cleanUser })
-	}
-)
+router.post('/login', passport.authenticate('local'), (req, res, next) => {
+    if (req.user) {
+        var redir = { redirect: "/" };
+        return res.json(redir);
+  } else {
+        var redir = { redirect: '/login'};
+        return res.json(redir);
+  }
+})
+// router.post(
+// 	'/login',
+// 	function(req, res, next) {
+// 		console.log(req.body)
+// 		console.log('================')
+// 		next()
+// 	},
+// 	passport.authenticate('local'),
+// 	(req, res) => {
+// 		console.log('POST to /login')
+// 		const user = JSON.parse(JSON.stringify(req.user)) // hack
+// 		const cleanUser = Object.assign({}, user)
+// 		if (cleanUser.local) {
+// 			console.log(`Deleting ${cleanUser.local.password}`)
+// 			delete cleanUser.local.password
+// 		}
+// 		res.json({ user: cleanUser })
+// 	})
 
 router.post('/logout', (req, res) => {
 	if (req.user) {

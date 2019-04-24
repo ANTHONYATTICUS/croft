@@ -11,9 +11,7 @@ const userSchema = new Schema({
 		username: { type: String, unique: false, required: false },
 		password: { type: String, unique: false, required: false }
 	},
-	google: {
-		googleId: { type: String, required: false }
-	},
+	
 	photos: []
 	// local: {
 	// 	email: { type: String, unique: true },

@@ -67,7 +67,14 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, '../build/'))
 	})
 }
-
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header(
+	"Access-Control-Allow-Headers",
+	"Origin, X-Requested-With, Content-Type, Accept"
+	);
+	next();
+	});
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
 
@@ -88,3 +95,5 @@ app.use(function(err, req, res, next) {
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
+
+
