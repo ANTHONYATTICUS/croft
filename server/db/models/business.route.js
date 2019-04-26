@@ -1,24 +1,24 @@
 const express = require('express');
-const landRoute = express.Router();
+const businessRoutes = express.Router();
 
-// Require Land model in routes module
-let Land = require('../models/land');
+// Require Business model in our routes module
+let Business = require('./business.model');
 
-// Define store route
-landRoute.route('/add').post(function (req, res){
-    let land = new Land(req.body);
-    land.save()
-        .then(business => {
-            res.status(200).json({'land': 'land added successfully'});
-        })
-        .catch(err => {
-            res.status(400).send('Unable to save database');
-        });
+// Defined store route
+businessRoutes.route('/add').post(function (req, res) {
+  let business = new Business(req.body);
+  business.save()
+    .then(business => {
+      res.status(200).json({'business': 'business in added successfully'});
+    })
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+    });
 });
 
 // Defined get data(index or listing) route
-landRoute.route('/').get(function (req, res) {
-    Land.find(function(err, emptyland){
+businessRoutes.route('/').get(function (req, res) {
+    Business.find(function(err, businesses){
     if(err){
       console.log(err);
     }

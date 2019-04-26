@@ -12,16 +12,15 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const dbConnection = require('./db') // loads our connection to the mongo database
 const passport = require('./passport')
+const businessRoute = require('./db/models/business.route');
+
 const app = express()
 const PORT = process.env.PORT || 8080
-
-// ===== Middleware ====
+const cors = require('cors')
+// Middleware
 app.use(morgan('dev'))
-app.use(
-	bodyParser.urlencoded({
-		extended: false
-	})
-)
+app.use(bodyParser.urlencoded({extended: false})
+);
 app.use(bodyParser.json())
 app.use(
 	session({
@@ -32,33 +31,13 @@ app.use(
 	})
 )
 
-// ===== Passport ====
+app.use(cors())
+
+// Passport
 app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 
-// ===== testing middleware =====
-// app.use(function(req, res, next) {
-// 	console.log('===== passport user =======')
-// 	console.log(req.session)
-// 	console.log(req.user)
-// 	console.log('===== END =======')
-// 	next()
-// })
-// testing
-// app.get(
-// 	'/auth/google/callback',
-// 	(req, res, next) => {
-// 		console.log(`req.user: ${req.user}`)
-// 		console.log('======= /auth/google/callback was called! =====')
-// 		next()
-// 	},
-// 	passport.authenticate('google', { failureRedirect: '/login' }),
-// 	(req, res) => {
-// 		res.redirect('/')
-// 	}
-// )
-
-// ==== if its production environment!
+// production environment!
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path')
 	console.log('YOU ARE IN THE PRODUCTION ENV')
@@ -67,33 +46,21 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, '../build/'))
 	})
 }
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header(
-	"Access-Control-Allow-Headers",
-	"Origin, X-Requested-With, Content-Type, Accept"
-	);
-	next();
-	});
-/* Express app ROUTING */
-app.use('/auth', require('./auth'))
 
-app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	next();
-  });
+
+/* Express ROUTING */
+app.use('/auth', require('./auth'))
+app.use('/business', businessRoute);
+
   
-// ====== Error handler ====
+// Error handler
 app.use(function(err, req, res, next) {
 	console.log('====== ERROR =======')
 	console.error(err.stack)
 	res.status(500)
 })
 
-// ==== Starting Server =====
+// Starting Server
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
 })
-
-

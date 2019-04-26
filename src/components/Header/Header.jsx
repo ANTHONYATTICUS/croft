@@ -17,24 +17,72 @@ import Menu from "@material-ui/icons/Menu";
 import Close from "@material-ui/icons/Close";
 // core components
 import headerStyle from "assets/jss/material-kit-pro-react/components/headerStyle.jsx";
+import axios from 'axios';
+
+
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super()
     this.state = {
-      mobileOpen: false
-    };
+      loggedIn: false,
+      user: null
+    }
+
     this.handleDrawerToggle = this.handleDrawerToggle.bind(this);
     this.headerColorChange = this.headerColorChange.bind(this);
   }
   handleDrawerToggle() {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   }
-  componentDidMount() {
-    if (this.props.changeColorOnScroll) {
-      window.addEventListener("scroll", this.headerColorChange);
-    }
-  }
+  // componentDidMount() {
+  //   axios.get('/auth/user').then(response => {
+	// 		console.log(response.data)
+	// 		if (!!response.data.user) {
+	// 			console.log('THERE IS A USER')
+	// 			this.setState({
+	// 				loggedIn: true,
+	// 				user: response.data.user
+	// 			})
+	// 		} else {
+	// 			this.setState({
+	// 				loggedIn: false,
+	// 				user: null
+	// 			})
+	// 		}
+	// 	})
+  // }
+  _logout(event) {
+		event.preventDefault()
+		console.log('logging out')
+		axios.post('/auth/logout').then(response => {
+			console.log(response.data)
+			if (response.status === 200) {
+				this.setState({
+					loggedIn: false,
+					user: null
+				})
+			}
+		})
+	}
+
+	_login(username, password) {
+		axios
+			.post('/auth/login', {
+				username,
+				password
+			})
+			.then(response => {
+				console.log(response)
+				if (response.status === 200) {
+					// update the state
+					this.setState({
+						loggedIn: true,
+						user: response.data.user
+					})
+				}
+			})
+	}
   headerColorChange() {
     const { classes, color, changeColorOnScroll } = this.props;
     const windowsScrollTop = window.pageYOffset;

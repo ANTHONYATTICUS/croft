@@ -25,7 +25,7 @@ router.get('/user', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
     if (req.user) {
-        var redir = { redirect: "/" };
+        var redir = { redirect: "/profile-page" };
         return res.json(redir);
   } else {
         var redir = { redirect: '/login'};

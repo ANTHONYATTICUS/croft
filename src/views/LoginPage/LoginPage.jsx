@@ -16,7 +16,6 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageStyle.jsx";
 
@@ -32,7 +31,7 @@ class LoginPage extends React.Component {
     this.state = {
       username: '',
       password: '',
-      redirectTo: '/profile-page'
+      redirectTo: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChangeUsername = this.handleChangeUsername.bind(this)
@@ -59,15 +58,17 @@ class LoginPage extends React.Component {
       password: password
     })
       .then(function (response) {
-        if (response.data.redirect == '/') {
-          console.log(response)
+        if (response.data.redirect == '/profile-page') {
           window.location = "/profile-page"
-      } else if (response.data.redirect == '/login'){
-          window.location = "/login"
+          console.log("im here");
+      } else if (response.data.redirect == '/login-page'){
+        
+          window.location = "/login-page"
+          console.log("meeeeeeh");
       }
     })
       .catch(function(error) {
-        window.location = "/login"
+        window.location = "/login-page"
    
       })
       

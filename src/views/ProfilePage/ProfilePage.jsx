@@ -83,7 +83,7 @@ class ProfilePage extends React.Component {
                 feel with a solid groove structure.{" "}
               </p>
             </div>
-            <div>
+            {/* <div>
               
               <CustomInput />
               zip code
@@ -95,7 +95,7 @@ class ProfilePage extends React.Component {
             <div>
               $ per month
               <CustomInput />
-            </div>
+            </div> */}
             {/* <div className={classes.profileTabs}>
               <NavPills
                 alignCenter

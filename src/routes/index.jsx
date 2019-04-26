@@ -15,25 +15,24 @@ import ShoppingCartPage from "views/ShoppingCartPage/ShoppingCartPage.jsx";
 import SignupPage from "views/SignupPage/SignupPage.jsx";
 
 var indexRoutes = [
-  { path: "/about-us", name: "AboutUsPage", component: AboutUsPage },
+  // { path: "/about-us", name: "AboutUsPage", component: AboutUsPage },
   { path: "/blog-post", name: "BlogPostPage", component: BlogPostPage },
-  { path: "/blog-posts", name: "BlogPostsPage", component: BlogPostsPage },
-  { path: "/components", name: "Components", component: ComponentsPage },
-  { path: "/contact-us", name: "ContactUsPage", component: ContactUsPage },
-  { path: "/ecommerce-page", name: "EcommercePage", component: EcommercePage },
+  // { path: "/blog-posts", name: "BlogPostsPage", component: BlogPostsPage },
+  // { path: "/components", name: "Components", component: ComponentsPage },
+  // { path: "/contact-us", name: "ContactUsPage", component: ContactUsPage },
+  // { path: "/ecommerce-page", name: "EcommercePage", component: EcommercePage },
 
   { path: "/login-page", name: "LoginPage", component: LoginPage },
-  { path: "/pricing", name: "PricingPage", component: PricingPage },
+  // { path: "/pricing", name: "PricingPage", component: PricingPage },
   { path: "/profile-page", name: "ProfilePage", component: ProfilePage },
-  { path: "/product-page", name: "ProductPage", component: ProductPage },
-  { path: "/sections", name: "SectionsPage", component: SectionsPage },
-  {
-    path: "/shopping-cart-page",
-    name: "ShoppingCartPage",
-    component: ShoppingCartPage
-  },
-  { path: "/signup-page", name: "SignupPage", component: SignupPage },
-  { path: "/PresentationPage", name: "PresentationPage", component: PresentationPage },
+  // { path: "/product-page", name: "ProductPage", component: ProductPage },
+  // { path: "/sections", name: "SectionsPage", component: SectionsPage },
+  // {
+  //   path: "/shopping-cart-page",
+  //   name: "ShoppingCartPage",
+  //   component: ShoppingCartPage
+  // },
+  { path: "/signup", name: "SignupPage", component: SignupPage },
   { path: "/", name: "LandingPage", component: LandingPage },
 ];
 
