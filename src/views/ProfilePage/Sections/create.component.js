@@ -118,9 +118,7 @@ class Create extends Component {
           />
 
         </div>
-        <div>
-          {/* <Button className={classes.button}>SUBMIT</Button> */}
-        </div>
+        
 
         <div>
           <Button type="submit" value="Submit" className={classes.button}>Submit</Button>
