@@ -137,7 +137,7 @@ class Edit extends Component {
                 </div>
                 
                 <div className="form-group">
-                <Button type="submit" value="Submit" className={classes.button}>Submit</Button>
+                <Button onClick={this.onSubmit}type="submit" value="Submit" className={classes.button}>Submit</Button>
                 <br/>
                 <br/>
                 </div>
