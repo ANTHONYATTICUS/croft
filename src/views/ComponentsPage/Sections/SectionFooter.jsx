@@ -1,19 +1,19 @@
-import React from "react";
+import React from "./node_modules/react";
 // nodejs library that concatenates classes
-import classNames from "classnames";
+import classNames from "./node_modules/classnames";
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import withStyles from "./node_modules/@material-ui/core/styles/withStyles";
+import List from "./node_modules/@material-ui/core/List";
+import ListItem from "./node_modules/@material-ui/core/ListItem";
 // @material-ui/icons
-import Mail from "@material-ui/icons/Mail";
-import Favorite from "@material-ui/icons/Favorite";
+import Mail from "./node_modules/@material-ui/icons/Mail";
+import Favorite from "./node_modules/@material-ui/icons/Favorite";
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Footer from "components/Footer/Footer.jsx";
+import GridContainer from "./node_modules/components/Grid/GridContainer.jsx.js.js";
+import GridItem from "./node_modules/components/Grid/GridItem.jsx.js.js";
+import Button from "./node_modules/components/CustomButtons/Button.jsx.js.js";
+import CustomInput from "./node_modules/components/CustomInput/CustomInput.jsx.js.js";
+import Footer from "./node_modules/components/Footer/Footer.jsx.js.js";
 
 import face1 from "assets/img/faces/card-profile6-square.jpg";
 import face2 from "assets/img/faces/christian.jpg";
@@ -24,7 +24,7 @@ import face6 from "assets/img/faces/kendall.jpg";
 import face7 from "assets/img/faces/card-profile5-square.jpg";
 import face8 from "assets/img/faces/card-profile2-square.jpg";
 
-import styles from "assets/jss/material-kit-pro-react/views/componentsSections/footerStyle.jsx";
+import styles from "./node_modules/assets/jss/material-kit-pro-react/views/componentsSections/footerStyle.jsx.js.js";
 
 const SectionFooter = props => {
   const { classes } = props;

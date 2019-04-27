@@ -8,13 +8,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Timeline from "@material-ui/icons/Timeline";
-import Code from "@material-ui/icons/Code";
-import Group from "@material-ui/icons/Group";
-import Face from "@material-ui/icons/Face";
 import Email from "@material-ui/icons/Email";
 import Check from "@material-ui/icons/Check";
-import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
@@ -24,7 +19,6 @@ import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import InfoArea from "components/InfoArea/InfoArea.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import axios from 'axios';
 import signupPageStyle from "assets/jss/material-kit-pro-react/views/signupPageStyle.jsx";
@@ -53,10 +47,9 @@ class SignupPage extends React.Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
-    const {username, password} = this.state;
-    axios.post("http://localhost:8080/auth/signup", {
-      username: username,
-      password: password
+    axios.post('https://localhost:8080/auth/signup', {
+      username: this.state.username,
+      password: this.state.password
     })
     .then(response => {
       console.log(response)
@@ -104,10 +97,6 @@ class SignupPage extends React.Component {
                     <GridContainer justify="center">
                       <GridItem xs={12} sm={5} md={5}>
                         <div className={classes.textCenter}>
-                          <Button justIcon round color="twitter">
-                            <i className={classes.socials + "fab fa-twitter"} />
-                          </Button>
-                          {` `}
                           <Button justIcon round color="instagram">
                             <i className={classes.socials + " fab fa-instagram"} />
                           </Button>
@@ -119,21 +108,7 @@ class SignupPage extends React.Component {
                         </div>
 
                         <form className={classes.form}>
-                          {/* <CustomInput formControlProps={{fullWidth: true, className: classes.customFormControlClasses}}
-                           inputProps={{
-                              startAdornment: (
-                                <InputAdornment
-                                  position="start"
-                                  className={classes.inputAdornment}
-                                >
-                                  <Face
-                                    className={classes.inputAdornmentIcon}
-                                  />
-                                </InputAdornment>
-                              ),
-                              placeholder: "First Name..."
-                            }}
-                          /> */}
+                     
                           <CustomInput
                             formControlProps={{
                               fullWidth: true,

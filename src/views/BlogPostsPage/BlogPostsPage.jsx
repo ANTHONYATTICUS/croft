@@ -52,11 +52,8 @@ class BlogPostsPage extends React.Component {
         </Parallax>
         <div className={classes.main}>
           <div className={classes.container}>
-            <SectionPills />
             <SectionInterested />
           </div>
-          <SectionImage />
-          <SubscribeLine />
         </div>
         <Footer
           content={

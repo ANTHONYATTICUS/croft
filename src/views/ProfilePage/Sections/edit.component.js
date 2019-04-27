@@ -52,19 +52,20 @@ export default class Edit extends Component {
       business_name: this.state.business_name,
       business_gst_number: this.state.business_gst_number
     };
-    axios.post('http://localhost:4000/business/update/'+this.props.match.params.id, obj)
+    axios.post('http://localhost:8080/business/update/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data));
-    
-    this.props.history.push('/index');
+          this.props.history.push('/index');
+          window.location = "/profile-page"
+
   }
  
   render() {
     return (
-        <div style={{ marginTop: 10 }}>
-            <h3 align="center">Update Business</h3>
-            <form onSubmit={this.onSubmit}>
+        <div align="center" className="container" style={{ marginTop: 10 }}>
+            <h3 align="center">Update Property Information</h3>
+            <form  className="w-50 mt-5"onSubmit={this.onSubmit}>
                 <div className="form-group">
-                    <label>Person Name:  </label>
+                    <label>Email  </label>
                     <input 
                       type="text" 
                       className="form-control" 
@@ -73,7 +74,7 @@ export default class Edit extends Component {
                       />
                 </div>
                 <div className="form-group">
-                    <label>Business Name: </label>
+                    <label>City </label>
                     <input type="text" 
                       className="form-control"
                       value={this.state.business_name}
@@ -81,7 +82,7 @@ export default class Edit extends Component {
                       />
                 </div>
                 <div className="form-group">
-                    <label>GST Number: </label>
+                    <label>Acres </label>
                     <input type="text" 
                       className="form-control"
                       value={this.state.business_gst_number}

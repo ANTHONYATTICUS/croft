@@ -12,17 +12,6 @@ const userSchema = new Schema({
 		password: { type: String, unique: false, required: false }
 	},
 	
-	photos: []
-	// local: {
-	// 	email: { type: String, unique: true },
-	// 	password: { type: String }
-	// },
-	// google: {
-	// 	id: { type: String },
-	// 	photos: []
-	// },
-	// firstName: { type: String },
-	// lastName: { type: String }
 })
 
 // Define schema methods
@@ -44,8 +33,6 @@ userSchema.pre('save', function(next) {
 		this.local.password = this.hashPassword(this.local.password)
 		next()
 	}
-	// this.password = this.hashPassword(this.password)
-	// next()
 })
 
 // Create reference to User & export

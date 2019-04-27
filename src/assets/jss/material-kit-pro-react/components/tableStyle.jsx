@@ -87,7 +87,7 @@ const tableStyle = {
   tableStripedRow: {
     backgroundColor: grayColor[16]
   },
-  tableRowHover: {
+  TableDataHover: {
     "&:hover": {
       backgroundColor: grayColor[23]
     }

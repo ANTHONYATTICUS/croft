@@ -8,7 +8,7 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import TableData from "@material-ui/core/TableData";
 
 import style from "assets/jss/material-kit-pro-react/components/tableStyle.jsx";
 
@@ -33,7 +33,7 @@ function CustomTable({ ...props }) {
       <Table className={classes.table}>
         {tableHead !== undefined ? (
           <TableHead className={classes[tableHeaderColor]}>
-            <TableRow className={classes.tableRow}>
+            <TableData className={classes.TableData}>
               {tableHead.map((prop, key) => {
                 const tableCellClasses =
                   classes.tableHeadCell +
@@ -52,7 +52,7 @@ function CustomTable({ ...props }) {
                   </TableCell>
                 );
               })}
-            </TableRow>
+            </TableData>
           </TableHead>
         ) : null}
         <TableBody>
@@ -64,14 +64,14 @@ function CustomTable({ ...props }) {
               rowColored = true;
               prop = prop.data;
             }
-            const tableRowClasses = cx({
-              [classes.tableRowHover]: hover,
+            const TableDataClasses = cx({
+              [classes.TableDataHover]: hover,
               [classes[rowColor + "Row"]]: rowColored,
               [classes.tableStripedRow]: striped && key % 2 === 0
             });
             if (prop.total) {
               return (
-                <TableRow key={key} hover={hover} className={tableRowClasses}>
+                <TableData key={key} hover={hover} className={TableDataClasses}>
                   <TableCell
                     className={classes.tableCell}
                     colSpan={prop.colspan}
@@ -94,12 +94,12 @@ function CustomTable({ ...props }) {
                       colSpan={tableHead.length - (prop.colspan - 0 + 2)}
                     />
                   ) : null}
-                </TableRow>
+                </TableData>
               );
             }
             if (prop.purchase) {
               return (
-                <TableRow key={key} hover={hover} className={tableRowClasses}>
+                <TableData key={key} hover={hover} className={TableDataClasses}>
                   <TableCell
                     className={classes.tableCell}
                     colSpan={prop.colspan}
@@ -122,14 +122,14 @@ function CustomTable({ ...props }) {
                   >
                     {prop.col.text}
                   </TableCell>
-                </TableRow>
+                </TableData>
               );
             }
             return (
-              <TableRow
+              <TableData
                 key={key}
                 hover={hover}
-                className={classes.tableRow + " " + tableRowClasses}
+                className={classes.TableData + " " + TableDataClasses}
               >
                 {prop.map((prop, key) => {
                   const tableCellClasses =
@@ -147,7 +147,7 @@ function CustomTable({ ...props }) {
                     </TableCell>
                   );
                 })}
-              </TableRow>
+              </TableData>
             );
           })}
         </TableBody>

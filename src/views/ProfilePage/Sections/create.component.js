@@ -1,8 +1,35 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+});
 
-export default class Create extends Component {
+
+
+class Create extends Component {
   constructor(props) {
     super(props);
     this.onChangePersonName = this.onChangePersonName.bind(this);
@@ -13,7 +40,7 @@ export default class Create extends Component {
     this.state = {
       person_name: '',
       business_name: '',
-      business_gst_number:''
+      business_gst_number: ''
     }
   }
   onChangePersonName(e) {
@@ -24,7 +51,7 @@ export default class Create extends Component {
   onChangeBusinessName(e) {
     this.setState({
       business_name: e.target.value
-    })  
+    })
   }
   onChangeGstNumber(e) {
     this.setState({
@@ -32,58 +59,79 @@ export default class Create extends Component {
     })
   }
 
- 
+
   onSubmit = (e) => {
     e.preventDefault()
-    const {person_name, business_name, business_gst_number} = this.state;
+    const { person_name, business_name, business_gst_number } = this.state;
     axios.post("http://localhost:8080/business/add", {
       person_name: person_name,
       business_gst_number: business_gst_number,
       business_name: business_name
     })
-    .then(res => console.log(res.data));
+      .then(res => console.log(res.data));
     this.setState({
       person_name: '',
       business_name: '',
       business_gst_number: ''
     })
+    window.location = "/profile-page"
   }
- 
+
   render() {
+    const { classes } = this.props;
     return (
-        <div style={{ marginTop: 10 }}>
-            <h3>Add New Business</h3>
-            <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                    <label>Person Name:  </label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
-                      value={this.state.person_name}
-                      onChange={this.onChangePersonName}
-                      />
-                </div>
-                <div className="form-group">
-                    <label>Business Name: </label>
-                    <input type="text" 
-                      className="form-control"
-                      value={this.state.business_name}
-                      onChange={this.onChangeBusinessName}
-                      />
-                </div>
-                <div className="form-group">
-                    <label>GST Number: </label>
-                    <input type="text" 
-                      className="form-control"
-                      value={this.state.business_gst_number}
-                      onChange={this.onChangeGstNumber}
-                      />
-                </div>
-                <div className="form-group">
-                    <input type="submit" value="Register Business" className="btn btn-primary"/>
-                </div>
-            </form>
+
+
+
+      <form onSubmit={this.onSubmit} className={classes.container} noValidate autoComplete="off">
+        <div>
+          <TextField
+            id="outlined-name"
+            label="Email"
+            className={classes.textField}
+            value={this.state.person_name}
+            onChange={this.onChangePersonName}
+            margin="normal"
+            variant="outlined"
+          />
         </div>
-    )
+        <div>
+          <TextField
+            id="outlined-name"
+            label="City"
+            className={classes.textField}
+            value={this.state.business_name}
+            onChange={this.onChangeBusinessName}
+            margin="normal"
+            variant="outlined"
+          />
+        </div>
+        <div>
+          <TextField
+            id="outlined-name"
+            label="Acres"
+            className={classes.textField}
+            value={this.state.business_gst_number}
+            onChange={this.onChangeGstNumber}
+            margin="normal"
+            variant="outlined"
+          />
+
+        </div>
+        <div>
+          {/* <Button className={classes.button}>SUBMIT</Button> */}
+        </div>
+
+        <div>
+          <Button type="submit" value="Submit" className={classes.button}>Submit</Button>
+        </div>
+
+      </form>
+
+    );
   }
 }
+Create.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(Create)

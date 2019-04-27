@@ -1,12 +1,8 @@
 import React from "react";
 import axios from "axios";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-// @material-ui/icons
-
-// core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -16,11 +12,8 @@ import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-
 import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageStyle.jsx";
-
 import image from "assets/img/garden_north-perspective_2017.jpg";
-
 import TextField from '@material-ui/core/TextField';
 
 
@@ -58,10 +51,10 @@ class LoginPage extends React.Component {
       password: password
     })
       .then(function (response) {
-        if (response.data.redirect == '/profile-page') {
+        if (response.data.redirect === '/profile-page') {
           window.location = "/profile-page"
           console.log("im here");
-      } else if (response.data.redirect == '/login-page'){
+      } else if (response.data.redirect === '/login-page'){
         
           window.location = "/login-page"
           console.log("meeeeeeh");
@@ -115,7 +108,7 @@ class LoginPage extends React.Component {
                           className={classes.iconButtons}
                           onClick={e => e.preventDefault()}
                         >
-                          <i className="fab fa-twitter" />
+                         <i className={classes.socials + " fab fa-instagram"} />
                         </Button>
                         <Button
                           justIcon
@@ -124,14 +117,6 @@ class LoginPage extends React.Component {
                           onClick={e => e.preventDefault()}
                         >
                           <i className="fab fa-facebook" />
-                        </Button>
-                        <Button
-                          justIcon
-                          color="transparent"
-                          className={classes.iconButtons}
-                          onClick={e => e.preventDefault()}
-                        >
-                          <i className="fab fa-google-plus-g" />
                         </Button>
                       </div>
                     </CardHeader>
